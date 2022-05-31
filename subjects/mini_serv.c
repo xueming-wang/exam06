@@ -67,9 +67,9 @@ int intlen(int i) {
 
 	if (i == 0)
 		return 1;
-	else {
+	while(i > 0){
 		i = i / 10;
-		len++;
+		++len;
 	}
 	return len;
 }
@@ -213,7 +213,7 @@ void clientConn() {
 	addToList(newClient);
 
 	FD_SET(newclientFd, &fds);
-	msg = calloc(intlen(newClient->id) + sizeof("server: client just arrived\n"), sizeof(char));
+	msg = calloc(intlen(newClient->id) + sizeof("server: client  just arrived\n"), sizeof(char));
 	if (msg == NULL)
 		exit_error();
 	sprintf(msg, "server: client %d just arrived\n", newClient->id);
@@ -256,7 +256,7 @@ void deletClient(int fd) {
 void clientDisconn(int fd) {
 	char *msg = NULL;
 
-	msg = calloc(intlen(getId(fd)) + sizeof("server: client just left\n"), sizeof(char));
+	msg = calloc(intlen(getId(fd)) + sizeof("server: client  just left\n"), sizeof(char));
 	if (msg == NULL)
 		exit_error();
 	sprintf(msg, "server: client %d just left\n", getId(fd));
