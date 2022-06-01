@@ -41,8 +41,6 @@ void freeList() {
 		free(waitfree);
 		waitfree = NULL;
 	}
-	close(socket_fd);
-	FD_CLR(socket_fd, &fds);
 }
 
 void exit_error() {
